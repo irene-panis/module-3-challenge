@@ -1,4 +1,4 @@
-# Module 2 Challenge - Portfolio
+# Module 3 Challenge - Password Generator
 
 ## Description
 
