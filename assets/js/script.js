@@ -15,32 +15,34 @@ function checkCondition(password, array) {
 }
 
 function generatePassword() {
-  var containsLowercase = window.confirm("Would you like to include lowercase letters in your password?");
-  var containsUppercase = window.confirm("Would you like to include uppercase letters in your password?");
-  var containsNumeric = window.confirm("Would you like to include numbers in your password?");
-  var containsSpecial = window.confirm("Would you like to include special characters in your password?");
-
   var listOfCharacters = []; // initialize empty array to be added to; this will be our list of characters to choose from
 
-  if (containsLowercase) { // if lowercase is selected, add lowercase characters to pool
-    listOfCharacters = listOfCharacters.concat(lowercase);
-  }
+  while (listOfCharacters.length === 0) { // loop until at least one criterion is selected
+    var containsLowercase = window.confirm("Would you like to include lowercase letters in your password?");
+    var containsUppercase = window.confirm("Would you like to include uppercase letters in your password?");
+    var containsNumeric = window.confirm("Would you like to include numbers in your password?");
+    var containsSpecial = window.confirm("Would you like to include special characters in your password?");
+  
+  
+    if (containsLowercase) { // if lowercase is selected, add lowercase characters to pool
+      listOfCharacters = listOfCharacters.concat(lowercase);
+    }
+  
+    if (containsUppercase) {
+      listOfCharacters = listOfCharacters.concat(uppercase);
+    }
+  
+    if (containsNumeric) {
+      listOfCharacters = listOfCharacters.concat(numeric);
+    }
+  
+    if (containsSpecial) {
+      listOfCharacters = listOfCharacters.concat(special);
+    }
 
-  if (containsUppercase) {
-    listOfCharacters = listOfCharacters.concat(uppercase);
-  }
-
-  if (containsNumeric) {
-    listOfCharacters = listOfCharacters.concat(numeric);
-  }
-
-  if (containsSpecial) {
-    listOfCharacters = listOfCharacters.concat(special);
-  }
-
-  if (listOfCharacters.length === 0) { // if listOfCharacters is empty, no criteria were selected by user and user is asked again
-    window.alert("Please choose at least one character type to include in your password.");
-    generatePassword();
+    if (listOfCharacters.length === 0) { // if listOfCharacters is empty, no criteria were selected by user and user is alerted
+      window.alert("Please choose at least one character type to include in your password.");
+    }
   }
 
   do { // keeps asking for pass length until user inputs valid number
