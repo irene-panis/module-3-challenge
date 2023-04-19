@@ -4,13 +4,12 @@ var uppercase = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 var numeric = Array.from("1234567890");
 var special = Array.from(" !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~");
 
-var containsLowercase;
-var containsUppercase;
-var containsNumeric;
-var containsSpecial;
-
 // iterates over array to check if password contains any items from it
-function verifyCriteria(password, array) {
+function verifyCriteria(password, condition, array) {
+
+  if (condition) {
+
+  }
   for (var i = 0; i < array.length; i++) {
     if (password.includes(array[i])) {
       return true; // returns true if password satisfies criteria
