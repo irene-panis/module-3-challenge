@@ -6,15 +6,15 @@ var special = Array.from(" !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~");
 
 // iterates over array to check if password contains any items from it
 function verifyCriteria(password, condition, array) {
-  if (condition) { // if condition is true, run for-loop
+  if (condition) { // if criteria is chosen, run for-loop
     for (var i = 0; i < array.length; i++) {
       if (password.includes(array[i])) {
-        return true; // returns true if password satisfies criteria
+        return true; // returns true immediately if password satisfies criteria
       } 
     }
     return false; // returns false if password does not satisfy criteria
   }
-  return; // returns undefined if condition is false
+  return; // returns undefined if criteria is not chosen
 }
 
 function generatePassword() {
@@ -51,6 +51,10 @@ function generatePassword() {
   do { // keeps asking for pass length until user inputs valid number
     var passLength;
     passLength = window.prompt("How many characters would you like your password to be? Please choose a number between 8 and 128.");
+
+    if ((passLength < 8) || (passLength > 128)) {
+      window.alert("Please choose a number between 8 and 128!");
+    }
   } while ((passLength < 8) || (passLength > 128));
 
   do { // keep generating passwords until password satisfies criteria
