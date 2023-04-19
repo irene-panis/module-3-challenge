@@ -6,16 +6,15 @@ var special = Array.from(" !\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~");
 
 // iterates over array to check if password contains any items from it
 function verifyCriteria(password, condition, array) {
-
-  if (condition) {
-
+  if (condition) { // if condition is true, run for-loop
+    for (var i = 0; i < array.length; i++) {
+      if (password.includes(array[i])) {
+        return true; // returns true if password satisfies criteria
+      } 
+    }
+    return false; // returns false if password does not satisfy criteria
   }
-  for (var i = 0; i < array.length; i++) {
-    if (password.includes(array[i])) {
-      return true; // returns true if password satisfies criteria
-    } 
-  }
-  return false; // returns false if password does not satisfy criteria
+  return; // returns undefined if condition is false
 }
 
 function generatePassword() {
@@ -65,30 +64,20 @@ function generatePassword() {
       password = password.concat(randomChar); // add character corresponding to random index to password; build password until passLength is reached
     }
 
-    // PASSWORD CRITERIA VERIFICATION
-    if (containsLowercase) {
-      if (!checkCondition(password, lowercase)) {
-        // if pw needs lowercase and checkCondition didn't find any, restart loop and generate another password
-        continue; // skips rest of loop and starts from beginning
-      }
+    if (verifyCriteria(password, containsLowercase, lowercase) === false) { // need to specify false because verifyCriteria can also return undefined
+      continue; // if criteria not met skip rest of loop and start from beginning
     }
-    if (containsUppercase) {
-      if (!checkCondition(password, uppercase)) {
-        continue;
-      }
+    if (verifyCriteria(password, containsUppercase, uppercase) === false) {
+      continue;
     }
-    if (containsNumeric) {
-      if (!checkCondition(password, numeric)) {
-        continue;
-      }
+    if (verifyCriteria(password, containsNumeric, numeric) === false) {
+      continue;
     }
-    if (containsSpecial) {
-      if (!checkCondition(password, special)) {
-        continue;
-      }
+    if (verifyCriteria(password, containsSpecial, special) === false) {
+      continue;
     }
-
-    verified = true; // if loop completes uninterrupted, set verified to true
+    
+    verified = true; // set verified to true if loop completes uninterrupted
   } while (verified === false);
 
   return password;
