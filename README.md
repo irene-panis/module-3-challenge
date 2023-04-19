@@ -10,7 +10,7 @@ Users can generate their secure passwords by simply clicking the "Generate Passw
 
 Users will not be able to generate a password without any criteria selected, and passwords must be between 8 and 128 characters long. The script does not allow for users to proceed with the password generation process until these conditions are met.
 
-Live: https://irene-panis.github.io/module-3-challenge/
+Live: https://irene-panis.github.io/password-generator/
 
 ![Screenshot of password generator page displaying a generated password](assets/img/preview.jpg)
 
